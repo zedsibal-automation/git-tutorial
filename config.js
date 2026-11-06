@@ -1,2 +1,2 @@
-console.log("git-tutorial");
-console.log("version 1")
+console.log('config.js');
+console.log('version1');
