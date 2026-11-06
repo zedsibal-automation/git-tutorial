@@ -1,2 +1,2 @@
 console.log("git-tutorial");
-console.log("version 6");
+console.log("version 7");
