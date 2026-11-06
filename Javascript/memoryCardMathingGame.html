@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="matchingSection">
+        <div class="header">
+            <span class="moves"></span>
+        <span class="time"></span>
+        </div>
+           
+        <div class="board">
+           
+        </div>
+        <div class="footer">
+            <button class="restartbtn">Restart</button>
+        </div>
+        <div class="winScreen hidden">
+            <div class="winCard">
+                <div class="trophy">🏆</div>
+                <h2>You did it!</h2>
+                <p class="winStats"></p>
+                <button type="button" class="playAgain">Play Again</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+<style>
+    .matchingSection{
+        position: relative;
+    }
+
+    .winScreen{
+        position:absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background-color: rgba(0, 60, 25, .45);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 14px;
+        animation: fadeIn .5s ease;
+    }
+
+    .winCard{
+        text-align: center;
+        padding: 28px 32px;
+        color: #0b3d1e;
+        font-family: 'Outfit', sans-serif;
+        background: rgba(255, 255, 255, .7);
+        border: 1px solid rgba(255, 255, 255, .8);
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+    }
+
+    .winCard h2 {
+        font-size: 1.8rem;
+        margin: 6px 0;
+    }
+
+    .winStats {
+        font-size: 1.1rem;
+        margin-bottom: 18px;
+    }
+
+    .trophy {
+        font-size: 4rem;
+        animation: pop .5s ease; 
+    }
+
+    .playAgain{
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 10px 28px;
+        color: #fff;
+        background: #f97316;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pop {
+        0%   { transform: scale(0); }
+        70%  { transform: scale(1.25); }
+        100% { transform: scale(1); }
+    }
+
+   .board {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        }
+    .card{
+       aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        font-size: 2.2rem;
+        background: rgba(255, 255, 255, .25);
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-radius: 14px;
+        cursor: pointer;
+        transition: background .2s, transform .2s;
+        margin: 20px 0 20px 0;
+        perspective: 600px;
+    }
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background: linear-gradient(135deg, rgba(9, 221, 80, 0.9), rgba(3, 107, 8, 0.9)) fixed;
+        display: flex;
+        justify-content: center;
+    }
+    .matchingSection{
+        margin-top: 40px;
+        min-width: 400px;
+        max-width: 600px;
+        padding: 24px 48px;
+        border: 1px solid rgba(255, 253, 253, 0.3);
+        border-radius: 14px;
+        background: rgba(255, 253, 253, 0.3);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+    }
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #0b3d1e;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    
+    .restartbtn {
+    display: flex;
+    justify-self: center;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 24px;
+    color: #fff;
+    background: #f97316;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: filter .2s, transform .2s;
+
+    }
+
+    .restartbtn:hover  { 
+    filter: brightness(.92); 
+    transform: translateY(-2px); 
+
+    }
+
+    .restartbtn:active { 
+    transform: scale(.97); 
+
+    }
+
+    .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;   /* children keep their own 3D position */
+    transition: transform .5s;
+    }
+
+    .card.flipped .card-inner { 
+        transform: rotateY(180deg);
+    }
+
+    .face{
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-size: 2.2rem;
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-radius: 14px;
+        backface-visibility: hidden;
+    }
+    .front{
+        background: rgba(255, 255, 255, .25);
+        color: rgba(255, 255, 255, .8);
+    }
+    
+    .back{
+        background: rgba(255, 255, 255, .6);
+        transform: rotateY(180deg);
+    }
+    .card.matched .back { 
+        background: rgba(34, 197, 94, .5);
+    }
+    .card.matched{
+        cursor: default;
+    }
+    .confetti{
+        position: fixed;
+        top: -30px;
+        font-size: 1.6rem;
+        pointer-events: none;
+        animation: fall 2.5s linear forwards;
+    }
+
+    @keyframes fall{
+        to {
+            transform: translateY(110vh) rotate(360deg);
+        }
+    }
+    </style>
+
+    <script>
+      
+        const emojis = ['🐶', '🐱', '🐸', '🦊', '🐼', '🐵'];
+        const board = document.querySelector('.board');
+        const winScreen = document.querySelector('.winScreen');
+        const winStats = document.querySelector('.winStats');
+
+        let lockBoard = false;
+        let firstCard = null;
+        let moves = 0;
+        let matches = 0;
+        let seconds = 0;
+        let timerId = null;
+
+        
+
+        function buildBoard(){
+
+             winScreen.classList.add('hidden');
+             board.innerHTML = '';
+             lockBoard = false;
+             firstCard = null;
+             moves = 0;
+             matches = 0;
+             document.querySelector('.moves').textContent = 'Moves: 0';
+             document.querySelector('.time').textContent = 'Time: 0:00';
+
+             const deck = [...emojis,...emojis];
+
+            for(let i = deck.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i],deck[j]]=[deck[j],deck[i]];
+            }
+
+            deck.forEach(emoji =>{
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.emoji = emoji;
+                card.innerHTML = `
+                    <div class="card-inner">
+                        <div class="face front">?</div>
+                        <div class="face back">${emoji}</div>
+                    </div>
+                `;
+                card.addEventListener('click', flipCard);
+                board.appendChild(card);
+            });
+
+            
+
+        }
+        
+        
+
+      function flipCard(e) {
+            const card = e.currentTarget;
+
+            // 1. Ignore clicks that shouldn't count
+            if (lockBoard) return;                         // two wrong cards are still showing
+            if (card === firstCard) return;                // same card clicked twice
+            if (card.classList.contains('matched')) return; // already solved
+
+            // 2. Show the card
+            card.classList.add('flipped');
+    
+
+            // 3. First click of a pair: remember it and stop
+            if (!firstCard) {
+                firstCard = card;
+                return;
+            }
+
+            // 4. Second click: this counts as one move
+            moves++;
+            document.querySelector('.moves').textContent = `Moves: ${moves}`;
+          
+
+            // 5. Compare
+            if (firstCard.dataset.emoji === card.dataset.emoji) {
+                handleMatch(firstCard, card);
+            } else {
+                handleMismatch(firstCard, card);
+            }
+
+            
+            }
+
+        function handleMatch(a, b) {
+            a.classList.add('matched');
+            b.classList.add('matched');
+            firstCard = null;
+            matches++;
+
+            if (matches === emojis.length) {
+                clearInterval(timerId);
+                lockBoard = true;
+                setTimeout(showwin, 700);
+            }
+        }
+
+        function showwin(){
+            const best = Number(localStorage.getItem('bestMoves')) || Infinity;
+            let note = '';
+
+            if (moves < best){
+                localStorage.setItem('bestMoves', moves);
+                note = '<br>⭐ New best!';
+            } else {
+                note = `<br>Best: ${best} moves`;
+            }
+
+            winStats.innerHTML = `${moves} moves - ${seconds} seconds${note}`;
+            winScreen.classList.remove('hidden');
+            confetti();
+        }
+        
+        function handleMismatch(a, b) {
+            lockBoard = true;                  // block clicks during the delay
+
+            setTimeout(() => {
+                a.classList.remove('flipped');
+                b.classList.remove('flipped');
+                firstCard = null;
+                lockBoard = false;               // unlock only after the cards flip back
+            }, 1000);
+            }
+
+           
+
+        function startTimer() {
+            clearInterval(timerId);            // never stack two timers
+            seconds = 0;
+            timerId = setInterval(() => {
+                seconds++;
+                const m = Math.floor(seconds / 60);
+                const s = String(seconds % 60).padStart(2, '0');
+                document.querySelector('.time').textContent = `Time: ${m}:${s}`;
+            }, 1000);
+            }
+        
+        function confetti(){
+            for (let i = 0; i < 80; i++){
+                const piece = document.createElement('span');
+                piece.className = 'confetti';
+                piece.textContent = ['🎉', '⭐', '✨', '🎊','🎉', '⭐', '✨', '🎊'][i % 8];
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.animationDelay = Math.random() * 3.5 + 's';
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), 5000);
+
+            }
+        }
+        
+            document.querySelector('.restartbtn').addEventListener('click', () => {
+            buildBoard();
+            startTimer();
+            });
+
+            document.querySelector('.playAgain').addEventListener('click', () => {
+                buildBoard();
+                startTimer();
+            });
+
+            buildBoard();
+            startTimer();
+            confetti();
+    </script>
+    </html>

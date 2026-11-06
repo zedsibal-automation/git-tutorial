@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoList</title>
+</head>
+<body>
+    <section class="todolist-container">
+        <h2>Todo List</h2>
+        <div class="todovalues-container">
+            <input type="text" id="nameValue" placeholder="Enter a task">
+            <input type="date" id="dateValue">
+            <button class="add">Add task</button>
+        </div>
+        <div class="todoListRecord">
+            <h3>My Todo List for the week</h3>
+            
+            <div class="mytodolisttable">
+                
+            </div>
+            
+        </div>
+    </section>
+</body>
+
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(135deg, #0F172A, #1D4ED8, #38BDF8)
+            no-repeat center center / cover;
+    }
+
+  
+    h2{
+        display: flex;
+        justify-content: center;
+        color: #F8FAFC;
+        width: 100%;
+        padding: 10px;
+        background: rgba(255, 255, 255, .12);
+        backdrop-filter: blue(15px);
+        border: 1px solid rgba(255, 255, 255, .25);
+        border-radius: 12px;
+        box-shadow: 0 8PX 32px rgba(0, 0, 0, .15);
+    }
+    h3{
+        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+        color: #0f2f50;
+        width: 100%;
+        padding: 10px;
+        background: rgba(255, 255, 255, .9);
+        border: 1px solid rgba(255, 255, 255, .25);
+        border-radius: 12px;
+        box-shadow: 0 8PX 32px rgba(0, 0, 0, .15);
+    }
+    
+    .todovalues-container input, .todovalues-container button{
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 10px;
+        background: rgba(255, 255, 255, .12);
+        backdrop-filter: blue(15px);
+        border: 1px solid rgba(255, 255, 255, .25);
+        border-radius: 12px;
+        box-shadow: 0 8PX 32px rgba(0, 0, 0, .15);
+        transition: 0.3s ease;
+    }
+    .mytodolisttable .delbtn{
+        font-size: .8rem;
+        font-weight: 600;
+        color: white;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        padding: 14px 40px;
+        background: linear-gradient(
+                    135deg,
+                    #EF4444 0%,
+                    #DC2626 50%,
+                    #991B1B 100%
+    );
+        backdrop-filter: blue(15px);
+        border: 1px solid rgba(255, 255, 255, .25);
+        box-shadow: 0 8PX 32px rgba(0, 0, 0, .15);
+        transition: 0.3s ease;
+        margin-left: 6px;
+    }
+    
+    .todolist-container button:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        filter: brightness(1.9);
+        border: 1px solid rgba(255, 255, 255, .8);
+    }
+    .todolist-container button:active{
+        filter: brightness(0.8);
+        transform: scale(.97);
+        border: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .mytodolisttable div{
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0 8PX 32px rgba(0, 0, 0, .15);
+        background-color: transparent;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+        margin-bottom: 10px;
+    }
+    .mytodolisttable div span{
+        padding: 10px 24px;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        background-color: white;
+        width: 100%;
+        color: navyblue;
+        font-weight: 600;
+    }
+ 
+</style>
+
+<script>
+    const textInput = document.getElementById('nameValue');
+    const dateInput = document.getElementById('dateValue');
+    const addInput  = document.querySelector('.add');
+    const mytodolisttable = document.querySelector('.mytodolisttable')
+
+    let todolistdata = JSON.parse(localStorage.getItem('todolistdata') || '[]');
+
+    if (!Array.isArray(todolistdata)){
+        todolistdata = [];
+    }
+    
+    function renderTodoList(){
+        mytodolisttable.innerHTML = '';
+
+        if (todolistdata.length === 0){
+            const noRecord = document.createElement('p');
+
+            noRecord.textContent = 'No record found.';
+            noRecord.classList.add('no-record');
+            mytodolisttable.appendChild(noRecord);
+
+        }
+
+        todolistdata.forEach((task, index) => {
+            const taskContainer = document.createElement('div');
+            
+            const taskName = document.createElement('span');
+            taskName.textContent = `${task.name} - ${task.date}`;
+
+            const delbtn = document.createElement('button');
+            delbtn.classList.add('delbtn');
+            delbtn.textContent = 'DELETE';
+
+            delbtn.addEventListener('click', () => {
+                todolistdata.splice(index, 1);
+
+                localStorage.setItem('todolistdata', JSON.stringify(todolistdata));
+
+                renderTodoList();
+
+            })
+
+            taskContainer.appendChild(taskName);
+            taskContainer.appendChild(delbtn);
+
+            mytodolisttable.appendChild(taskContainer);
+        });
+
+
+        
+
+    }
+    addInput.addEventListener('click', () => {
+            const name = textInput.value;
+            const date = dateInput.value;
+
+            if (!name || !date){
+                alert('Please enter a task and date');
+                return;
+            }
+
+            todolistdata.push({
+                name: name,
+                date: date,
+            });
+
+            localStorage.setItem('todolistdata', JSON.stringify(todolistdata))
+
+            renderTodoList();
+        });
+
+    renderTodoList();
+</script>
+</html>

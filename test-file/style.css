@@ -1,0 +1,128 @@
+*{
+    box-sizing: border-box;
+
+}
+
+body{
+    min-height: 100vh;
+    background: url(img/Soft\ Sage\,\ Cream\,\ and\ Blush\ Waves.png) no-repeat center center / cover;
+    margin: 0;
+    font-weight: 500;
+}
+button{
+    padding: 8px 28px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+
+    background: rgb(6, 78, 42);
+    border-radius: 50px;
+    border: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* box-shadow: 0 8px 32px rgba(0, 0, 0, .2); */
+    cursor: pointer;
+
+    transition: all .3s ease;
+}
+.page{
+    min-height: 100vh;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        'h h'
+        's m'
+        'f f'
+    
+    
+    ;
+}
+
+.navbar, .sidebar, .gallery, .footer{
+    margin: 10px;
+    border-radius: 8px;
+    background:  #FAE0CC30 ;
+    border: 1px solid rgba(250, 250, 250, .3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+button:active{
+    box-shadow: inset 3px 3px 12px rgba(0, 0, 0, 0.4);
+}
+.navbar{
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.links{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 auto;
+    gap: 1rem;
+  
+}
+.links a{
+    text-decoration: none;
+        color: #334932;
+}
+.logo{
+      color: #334932;
+      font-size: 22px;
+}
+.navbar{
+    grid-area: h;
+}
+
+.sidebar{
+    
+    grid-area: s;
+}
+.gallery{
+
+    grid-area: m;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+}
+.card:nth-child(n){
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.footer{
+
+    grid-area: f;
+    padding: 16px 18px;
+    font-size: larger;
+    font-weight: 700;
+}
+.card:nth-child(1){
+    grid-column: span 2;
+    grid-row: span 2;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+}
+
+.card img{
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+.card button{
+    margin-top: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-weight: 400;
+    font-size: 16px;
+}
+

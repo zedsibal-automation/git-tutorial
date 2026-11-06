@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h3>Cart Quantity</h3>
+        <button onclick="console.log(`Cart Quantity: ${cartQuantity}`)" class="qty">Show Quantity</button>
+        <button 
+        onclick="cartQuantity++;
+        console.log(`Cart Quantity: ${cartQuantity}`);
+        " class="cart">Add to Cart</button>
+
+        <button 
+        onclick="cartQuantity += 2;
+        console.log(`Cart Quantity: ${cartQuantity}`);"
+        
+        class="cart-no">+2</button>
+
+        <button 
+        onclick="cartQuantity += 3;
+        console.log(`Cart Quantity : ${cartQuantity}`);"
+        
+        class="cart-no">+3</button>
+
+        <button 
+        onclick="cartQuantity = 0;
+        console.log('Cart was reset');
+        console.log(`Cart quantity: ${cartQuantity}`)"
+        class="reset-cart">Reset Cart</button>
+    </div>
+    
+    <script>
+       let cartQuantity = 0;
+
+    </script>
+    <style>
+        button{
+            padding: 14px 40px;
+            border: none;
+            border-radius: 5px;
+            border-bottom: 1px solid rgba(2, 22, 9, 0.8);
+            background: linear-gradient(to bottom, rgb(1, 161, 1) 10%, green 40%, rgb(1, 87, 1) 100%);
+
+            box-shadow: 0 4px 0px rgba(1, 49, 9, 0.9),
+                        0 6px 5px rgba(0, 0, 0, .6),
+                        inset 0 2px 1px rgba(255, 255, 255, .3);
+            color: rgb(255, 226, 226);
+            font-weight: 700;
+            margin: 10px;
+            transition: all .3s ease;
+        }
+        button:hover{
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+             box-shadow: 0 4px 2px rgba(1, 49, 9, 0.9),
+                        0 8px 5px rgba(0, 0, 0, .6),
+                        inset 0 2px 1px rgba(255, 255, 255, .3);
+        }
+        button:active{
+            filter: brightness(0.95);
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px rgba(1, 49, 9, 0.9),
+                        0 4px 3px rgba(0, 0, 0, .6),
+                        inset 0 2px 1px rgba(255, 255, 255, .3);
+        }
+
+    </style>
+</body>
+</html>

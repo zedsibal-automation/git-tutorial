@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <body class="quizAppBody">
+        <section class="MainPage">
+            <h4 class="quizTime">Quiz Time</h4>
+            <button class="startbtn">Let's Start</button>
+        </section>
+        <section class="questionPage hidden">
+            <div class="progress">
+                <div class="bar">
+
+                </div>
+            </div>
+            <div class="counter"></div>
+            <div class="scoreText"></div>
+            <span class="question">What is 7 X 8?</span>
+            <div class="answers"></div>
+            <button type="button" class="next">Next</button>
+        </section>
+        <section class="lastPage hidden">
+            <span class="scoretitle">You scored</span>
+            <span class="score"></span>
+            <span class="scoreMsg"></span>
+            <button class="tryAgain">Try Again?</button>
+        </section>
+    </body>
+    <style>
+        .progress{
+            height: 10px;
+            width: 100%;
+            border-radius: 50px;
+            background-color: transparent;
+            display:flex;
+            justify-self: start;
+            align-self: start;
+            margin-bottom: 10px;
+        }
+        .score{
+            font-size: 1.3rem;
+        }
+        .scoretitle{
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #4fc3f7, #4a9cc0) fixed;
+        }
+        .MainPage,
+        .questionPage,
+        .lastPage{
+            background: rgba(255, 254, 254, 0.4);
+            height: 50%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            margin: 120px auto 0;
+            padding: 32px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 18px;
+            backdrop-filter: blur(30px);
+            justify-items: center;
+            align-items: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+            transition: all .3s ease;
+        }
+        h4{
+            font-size: 1.6rem;
+            color: rgb(31, 54, 104);
+        }
+        .startbtn{
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            backdrop-filter: blur(30px);
+            justify-items: center;
+            align-items: center;
+            font-size: 1.1rem;
+            padding: 10px 80px;
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
+            width :100%;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+        .startbtn:hover{
+            filter: brightness(.91);
+        }
+        .question{
+            font-size: 1.3rem;
+            padding-bottom: 10px;
+        }
+        .answers{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            
+        }
+        .next,
+        .tryAgain{
+          border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            backdrop-filter: blur(30px);
+            justify-items: center;
+            align-items: center;
+            font-size: 1.1rem;
+            padding: 10px 80px;
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
+            width :100%;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+        .next:hover:not(:disabled),
+        .tryAgain:hover:not(:disabled){
+            filter: brightness(.92);
+        }
+        .next:active:not(:disabled),
+        .startbtn:active,
+        .tryAgain:active{
+            filter: brightness(1.1);
+        }
+        .btn{
+         background: rgba(255, 255, 255, .22);
+         border: 1px solid rgba(255, 254, 254, 0.5);
+         color: #12306b;
+         font-size: 1.05rem;
+         font-weight: 600;
+         padding: 14px 18px;
+         margin-bottom: 6px;
+         border-radius: 14px;
+         cursor: pointer;
+         text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+         transition: background .2s, transform .15s, border-color .2s;
+         cursor:pointer;
+        }
+        .btn:hover:not(:disabled){
+            background: rgba(255, 254, 254, 0.6);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateX(4px);
+        }
+       
+        .hidden{
+            display: none;
+        }
+        .disable{
+            opacity: .45;
+            cursor: not-allowed;
+        }
+        .next:disabled { 
+            opacity: .45; cursor: not-allowed; 
+        }
+        .btn.correct { 
+            background: rgba(34, 197, 94, .6); 
+            border-color: #22c55e; 
+            color: #fff;
+         }
+        .btn.wrong   { 
+            background: rgba(239, 68, 68, .6); 
+            border-color: #ef4444; 
+            color: #fff; 
+        }
+        .btn:disabled { 
+            cursor: default; 
+        }
+        .bar{
+            display: flex;
+            height: 100%;
+            background-color: red;
+            transition: all .4s ease-out;
+            border-radius: 50px;
+        }
+    </style>
+
+    <script>
+        const questions = [
+            {
+                question: "What is 144 ÷ 12?",
+                answers: [
+                    {text: "10" , correct: false},
+                    {text: "11" , correct: true},
+                    {text: "12" , correct: false},
+                    {text: "14" , correct: false}
+                ]
+            },
+             {
+                question: "What is 144 - 44?",
+                answers: [
+                    {text: "100" , correct: true},
+                    {text: "11" , correct: false},
+                    {text: "12" , correct: false},
+                    {text: "14" , correct: false}
+                ]
+            },
+             {
+                question: "Which decimal is the same as 3/4?",
+                answers: [
+                    {text: "0.34" , correct: false},
+                    {text: "0.5" , correct: false},
+                    {text: "7.5" , correct: true},
+                    {text: "0.75" , correct: false}
+                ]
+            },
+             {
+                question: "A rectangle is 5 cm long and 3 cm wide. What is its perimeter?",
+                answers: [
+                    {text: "8 cm" , correct: false},
+                    {text: "15 cm" , correct: true},
+                    {text: "16 cm" , correct: false},
+                    {text: "30 cm" , correct: false}
+                ]
+            },
+             {
+                question: "What is 347 rounded to the nearest hundred?",
+                answers: [
+                    {text: "300" , correct: true},
+                    {text: "340" , correct: false},
+                    {text: "350" , correct: false},
+                    {text: "400" , correct: false}
+                ]
+            }
+        ]
+
+        
+        const MainPageElement = document.querySelector('.MainPage');
+        const questionPageElement = document.querySelector('.questionPage')
+        const lastPageElement = document.querySelector('.lastPage');
+        const quizAppBodyElement = document.querySelector('.quizAppBody');
+
+        const startbtnElement = document.querySelector('.startbtn');
+        const nextbtnElement    = document.querySelector('.next');
+        const tryAgainbtnElement = document.querySelector('.tryAgain');
+
+        const questionE1 = document.querySelector('.question');
+        const answersE1 = document.querySelector('.answers');
+        const counterE1 = document.querySelector('.scoreText');
+        const scoreTextE1 = document.querySelector('.scoreMsg');
+        const barE1 = document.querySelector('.bar');
+
+        let current = 0;
+        let score = 0;
+
+        function showScreen(screen){
+            [MainPageElement, questionPageElement, lastPageElement].forEach(s => s.classList.add('hidden'));
+            screen.classList.remove('hidden');
+        }
+       
+        function showQuestion() {
+            const q = questions[current];
+            questionE1.textContent = q.question;
+            counterE1.textContent = `Question ${current + 1} of ${questions.length}`;
+            scoreTextE1.textContent = `Score: ${score}`;
+            barE1.style.width = (current / questions.length ) * 100 + '%';
+            nextbtnElement.disabled = true;
+            answersE1.innerHTML = '';
+
+            q.answers.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.classList.add('btn');
+                btn.type = 'button';
+                btn.textContent = answer.text;
+                btn.dataset.correct = answer.correct;
+                btn.addEventListener('click', selectAnswer);
+                answersE1.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(e){
+            const clicked = e.target;
+            const isCorrect = clicked.dataset.correct === 'true';
+
+            if (isCorrect) score++;
+            clicked.classList.add(isCorrect ? 'correct' : 'wrong');
+
+            answersE1.querySelectorAll('.btn').forEach(b => {
+                if (b.dataset.correct === 'true') b.classList.add('correct');
+                b.disabled = true;
+            });
+
+            scoreTextE1.textContent = `Score: ${score}`;
+            nextbtnElement.disabled = false;
+        }
+
+        function getMessage(score, total) {
+            const p = score / total;
+            if (p === 1) return "Perfect! You're a superstar! 🌟";
+            if (p >= 0.7) return "Great job! Keep it up! 🎉";
+            if (p >= 0.4) return "Good try! Let's play again! 😊";
+            return "Nice effort! Practice makes perfect! 💪";
+        }
+        
+        function showResult() {
+            document.querySelector('.score').textContent = `${score} / ${questions.length}`;
+            document.querySelector('.scoreMsg').textContent = getMessage(score, questions.length);
+            showScreen(lastPageElement);
+        }
+        startbtnElement.addEventListener('click', ()=>{
+            current = 0;
+            score = 0 ;
+            showScreen(questionPageElement);
+            showQuestion();
+        });
+
+        nextbtnElement.addEventListener('click', () =>{
+            current++;
+            if (current < questions.length){
+                showQuestion();
+            } else {
+                showResult();
+            }
+        });
+        
+        tryAgainbtnElement.addEventListener('click', () => showScreen(MainPageElement));
+
+
+
+    </script>
+</body>
+</html>
+
+
+

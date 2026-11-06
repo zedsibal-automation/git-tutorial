@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="gameSection">
+        <div class="header">
+            <span class="turn">Turn: ❌</span>
+            <span class="score">Score ❌ 2 ⭕ 1 </span>
+        </div>
+        <div class="board">
+
+        </div>
+        <div class="footer">
+            <button type="button" class="restartbtn">Restart</button>
+        </div>
+        <div class="winScreen hidden">
+            <div class="winCard">
+                <div class="trophy">🏆</div>
+                <h2>You did it!</h2>
+                <p class="winStats"></p>
+                <button type="button" class="playAgain">Play Again</button>
+            </div>
+        </div>
+    </section>
+</body>
+
+<style>
+    h2{
+        color: #FFFFFF;
+    }
+    
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        
+
+    }   
+    body{
+        background: linear-gradient(135deg, #9B1313, #38000A) fixed;
+      
+    }
+    .gameSection{
+        position: relative;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+        align-items: center;
+        margin-top: 40px;
+        background:  #351518;
+        border: 1px solid #78333A;
+        border-radius: 14px;
+        padding: 24px 32px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+
+    }
+    .restartbtn{
+        background: linear-gradient(135deg,
+        #D9685F,
+        #BC4144);
+
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+
+        padding: 12px 28px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+        transition: all .3s ease;
+    }
+    .hidden{
+        display: none;
+    }
+    .playAgain:hover{
+        transform: translateY(.3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
+        filter: brightness(1.1);
+    }
+
+    .playAgain:active{
+        transform: translateY(0) scale(.97);
+    }
+    .board{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 20px 0 20px 0;
+        gap: .7rem;
+    }
+    .card{
+        width: 120px;
+        height: 120px;
+        align-items: center;
+        justify-self: center;
+        border: 1px solid #78333A;
+        padding: 14px;
+        background: linear-gradient(135deg , #FEFDC4, #FEFDC4);
+        border-radius: 8px;
+        font-size: 4rem;
+    }
+    .header{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 1.3rem;
+        margin-bottom: 18px;
+        font-weight: 600;
+        color: #CFA0A4;
+    }
+    .taken{
+        cursor: not-allowed;
+    }
+    .card.win { background: #86efac; }
+    .card.taken { cursor: not-allowed; }
+</style>
+
+<script>
+    const gameSectionEl = document.querySelector('.board');
+    const restartbtnEl = document.querySelector('.restartbtn')
+   
+    const wins = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],   // rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],   // columns
+    [0, 4, 8], [2, 4, 6]               // diagonals
+    ];
+
+    let board = Array(9).fill(null)
+    let currentPlayer = '❌';
+    let gameOver = false;
+
+
+
+ function buildBoard() {
+    gameSectionEl.innerHTML = '';  
+    document.querySelector('.turn').textContent = 'Turn: ❌';  
+    board = Array(9).fill(null);
+    gameOver = false;
+    currentPlayer = '❌';
+
+    board.forEach((_, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.index = index;
+        card.addEventListener('click', handleClick);
+        gameSectionEl.appendChild(card);
+    });   
+    
+ }
+
+ function handleClick(e){
+    const card = e.currentTarget;
+    const index = Number(card.dataset.index);
+    
+    if (gameOver) return;
+    if (board[index] !== null) return;
+
+    board[index] = currentPlayer;
+
+    card.textContent = currentPlayer;
+    card.classList.add('taken');
+    console.log(board);
+
+  
+
+    const winLine = checkWin();
+    if (winLine){
+        gameOver = true;
+        winLine.forEach(i => gameSectionEl.children[i].classList.add('win'));
+        document.querySelector('.turn').textContent = `${currentPlayer} wins! 🎉`;
+        return;
+    }
+
+
+     if (checkDraw()) {
+        document.querySelector('.turn').textContent = "It's a draw! 🤝";
+        return;
+    }
+
+    // 3. game continues: switch player
+    currentPlayer = currentPlayer === '❌' ? '⭕' : '❌';
+    document.querySelector('.turn').textContent = `Turn: ${currentPlayer}`;
+}
+ 
+
+ function checkDraw(){
+    const isDraw = board.every(slot => slot !== null);
+    if (isDraw) {
+        gameOver = true };
+   
+    return isDraw;
+ }
+
+ function checkWin(){
+     for (const line of wins) {
+        const [a, b, c] = line;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          
+            console.log(line);   // found a win: give back the winning squares
+                return line;
+        }
+    }
+    return null;   
+ }
+ 
+ restartbtnEl.addEventListener('click', buildBoard);
+
+ buildBoard();
+
+</script>
+</html>

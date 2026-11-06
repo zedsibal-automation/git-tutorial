@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="inputbox">
+        <input class="display" id="screen" placeholder="0">
+    </section>
+    <section class="buttons">
+        <button onclick="
+        
+            calculation = calculation + '1';
+            console.log(calculation);
+            
+        " class="one">1</button>
+        <button onclick="
+        
+            calculation = calculation + '2';
+            console.log(calculation);
+        
+        " class="two">2</button>
+        <button onclick="
+        
+            calculation = calculation + '3';
+            console.log(calculation);
+        
+        " class="three">3</button>
+        <button onclick="
+        
+            addOperator('+');
+        
+        " class="plus">+</button>
+        <button onclick="
+        
+           calculate()
+        
+        " class="equals">=</button>
+        <button onclick="
+        
+        
+        " class="headsbtn">Heads</button>
+        <button onclick="
+        
+         
+        
+        " class="tailsbtn">Tails</button>
+    </section>
+</body>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background: rgb(39, 38, 38) no-repeat center center / cover;
+        height: 100vh;
+        padding: 4px;
+    }
+    .inputbox{
+        width: 100%;
+        
+    }
+    .display{
+        width: 100%;
+        font-size: clamp(1.5rem, 5vw, 3.5rem);
+        padding: clamp(0.5rem, 2vw, 1.5rem);
+        text-align: right;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(218, 214, 214, .4);
+        background: linear-gradient(to top, rgba(243, 242, 242, .9),
+                    rgba(243, 235, 235, 0.9),rgba(226, 217, 217, 0.9));
+
+    }
+    .buttons{
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: repeat(4,1fr);
+        gap: 4px;
+
+    }
+    button{
+        background: linear-gradient(to top, rgb(20, 20, 20) 2%,
+        rgb(44, 43, 43) 50%,rgb(39, 38, 38)99%);
+        border: 1px solid rgba(218, 214, 214, .4);
+        font-size: clamp(1rem, 2.5vw, 2.2rem);
+        font-weight: 600;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .5),
+                    0 4px 12px rgba(0, 0, 0, .4);
+        color: azure;
+        font-size: clamp(1.5rem, 5vw, 3.5rem);
+        transition: all ease .4s;
+    }
+    button:hover{
+        filter: brightness(1.2);
+    }
+    button:active{
+        filter: brightness(.9);
+    }
+</style>
+<script>
+// lesson 5
+// const name = 'oliver';
+// console.log(`My name is: ${name}`);
+
+// let tax = 10;
+// const cost = 5 + 2 * 3 + 9;
+// tax = cost * (tax / 100);
+// const totalCost = cost + tax;
+// console.log(`Cost of food: $${cost}`);
+// console.log(`$${tax}`);
+// console.log(`Total cost: $${totalCost}`);
+
+// let calculation = '';
+
+// function addOperator(operator){
+//     if (calculation === '') return;
+
+//     const lastChar = calculation[calculation.length - 1];
+
+//     if (lastChar === '+' || lastChar === '-' || lastChar === '*' || lastChar === '/' ){
+//         return;
+//     }
+
+//     calculation = calculation + operator;
+//     console.log(calculation);
+// }
+
+// function calculate(){
+
+//     if (calculation === '')return;
+
+//         const lastChar = calculation[calculation.length - 1];
+
+//         if (['+', '-', '*', '/'].includes(lastChar)) {
+//         return;
+//     }
+
+//     calculation = String(eval(calculation));
+//     console.log(calculation);
+
+// }
+
+// lessong 6
+// 6a
+
+// const hour = new Date().getHours();
+
+// let currentHour = '';
+// function getHour(currenthHour){
+//     console.log(`Its ${hour} o'clock.` +
+//                     ((hour >=0 && hour <=11) ? ' Good Morning': 
+//                     (hour >= 12 && hour <= 18) ? ' Good Afternoon':
+//                     (hour >= 19 && hour <= 23) ? ' Good evening': 
+//                     'Invalid Time')
+//                );
+// }
+
+// getHour(hour);
+
+// 6d
+
+// const age = 6;
+// const isHoliday = true;
+
+// console.log(
+//                 !isHoliday ? (age <= 6 || age >= 65) ? 'Discount' : 'No discount'
+//                 : 'No discount'
+//             );
+
+// 6f
+
+// let randomNo = Math.random();
+// let guess = 'heads';
+
+// let result = randomNo > 0.5 ? 'heads':'tails';
+
+
+// function GetResult(){
+//     return (result === guess) ? ' You win':' You lose';
+// }
+
+// console.log(`Your guess is ${guess} and the result is ${result}` + GetResult())
+
+// 7a
+
+// function greet(name){
+//     console.log(name ? `Hello ${name}` : 'Hi there');
+// }
+
+// greet();
+
+// 7d
+
+
+// function convertTemp(degree, unit){
+//   console.log(  degree === '' || unit === '' ? 'No values' :
+//     unit === 'C' || unit === 'c' ? `${((degree * 9 / 5) + 32)}C` :
+//     unit === 'F' || unit === 'f' ? `${((degree - 32) * 5 / 9)}F` : 'Invalid unit');
+// }
+
+// convertTemp(0, 'c');
+
+// 7g
+// const unitsPerMeter = {
+//             mm: 1000,
+//             cm: 100,
+//             m: 1,
+//             km: 0.001,
+//             in: 39.3701,
+//             ft: 3.28084,
+//             yd: 1.09361,
+//             miles: 0.000621371,
+//         }
+
+
+// function convertLength(length, from, to){
+        
+
+//         if (!(from in unitsPerMeter) || !(to in unitsPerMeter)) {
+//             return `Invalid unit`;
+//         }
+       
+//         const meters = length / unitsPerMeter[from];
+//         const result = meters * unitsPerMeter[to];
+
+//         return `${Math.round(result * 100) / 100} ${to}`
+
+// }
+
+// console.log(convertLength(5, 'miles', 'km'));   // 8.05 km
+// console.log(convertLength(100, 'cm', 'in'));    // 39.37 in
+// console.log(convertLength(1, 'km', 'ft'));      // 3280.84 ft
+// console.log(convertLength(5, 'lbs', 'km'));     // Invalid unit: lbs
+
+// 8a
+
+// const product = {
+//     basketball: 2095
+// }
+
+// product.basketball += 500;
+
+// console.log(product);
+
+// product['delivery-time'] = '3 days';
+
+// console.log(product);
+
+// const pro1 = {
+//     name: 'laptop',
+//     price: 1000
+// }
+// const pro2 = {
+//     name: 'baseball',
+//     price: 10000
+// }
+
+// function comparePrice(product1, product2){
+//     return product1.price < product2.price ? product1 : product2;
+// }
+
+// let cheaper = comparePrice(pro1, pro2);
+
+
+
+
+// console.log(cheaper);
+// console.log(cheaper.name);
+
+// pro2.price = pro2.price - 9900;
+
+// cheaper = comparePrice(pro1, pro2);
+
+// console.log(cheaper);
+// console.log(cheaper.name);
+
+// pro1['delivery-time'] = '3days';
+// pro2['delivery-time'] = '5days';
+
+// console.log(pro1, pro2);
+
+// function checkIfSameProduct(prod1, prod2){
+//   return  prod1.name === prod2.name && prod1.price === prod2.price;
+// }
+
+// console.log(checkIfSameProduct(pro1, pro2));
+
+// const greeting = 'Good Morning';
+// const lowercase = greeting.toLowerCase();
+
+// console.log(lowercase);
+// const word = 'Oliver';
+// console.log(word.repeat(10));
+
+
+// 8i
+
+
+//  
+
+
+
+</script>
+</html>

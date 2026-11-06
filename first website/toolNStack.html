@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behind the Workflow | AI Automation Builds, Tests &amp; Fixes</title>
+    <meta name="description" content="Real AI automation builds for businesses: how they're designed, tested, broken, and fixed.">
+</head>
+<body>
+    <header>
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="SeriesNGuide.html">Series and Guides</a></li>
+                <li><a href="toolNStack.html">Tools & Stack</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul> 
+        </nav>
+    </header>
+
+   <main>
+        <section class="tools-hero">
+            <h1>The Stack Behind the Builds</h1>
+            <p class="tagline">The tools I actually use on real projects, what they're good at, and where they let me down.</p>
+            <p>I only write about tools I've used on real client work, including the ones I stopped using. No tool is perfect, so each one below comes with an honest note on what it does well and what to watch out for.</p>
+        </section>
+
+        <section class="stack-overview">
+            <h2>The Stack at a Glance</h2>
+            <table>
+                <caption>My core tools and what I use them for</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Category</th>
+                        <th scope="col">Tool</th>
+                        <th scope="col">Best for</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Automation</td>
+                        <td>n8n</td>
+                        <td>Complex workflows and self-hosting</td>
+                    </tr>
+                    <tr>
+                        <td>Automation</td>
+                        <td>Make</td>
+                        <td>Fast builds and easy client handoff</td>
+                    </tr>
+                    <tr>
+                        <td>Automation</td>
+                        <td>Zapier</td>
+                        <td>Quick wins and simple app connections</td>
+                    </tr>
+                    <tr>
+                        <td>AI</td>
+                        <td>OpenAI and Claude</td>
+                        <td>Classifying, drafting, and decision steps</td>
+                    </tr>
+                    <tr>
+                        <td>Data</td>
+                        <td>Airtable and Google Sheets</td>
+                        <td>Logs, data, and simple dashboards</td>
+                    </tr>
+                    <tr>
+                        <td>Business apps</td>
+                        <td>Stripe, Slack, and Gmail</td>
+                        <td>Where the real business actions happen</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="automation-platforms">
+            <h2>Automation Platforms</h2>
+
+            <article>
+                <h3>n8n</h3>
+                <p><strong>My default for complex builds.</strong> It handles branching logic, custom code, and error handling well, and you can self-host it if a client needs control over their data.</p>
+                <p><strong>Watch out for:</strong> It has a steeper learning curve, and non-technical clients can find it intimidating to maintain.</p>
+                <p><a href="#">Read my n8n posts →</a></p>
+            </article>
+
+            <article>
+                <h3>Make</h3>
+                <p><strong>Great when the client needs to understand it.</strong> The visual layout is easy to follow, which makes handoff and training simpler.</p>
+                <p><strong>Watch out for:</strong> Large scenarios can get messy, and costs can climb as your operation count grows.</p>
+                <p><a href="#">Read my Make posts →</a></p>
+            </article>
+
+            <article>
+                <h3>Zapier</h3>
+                <p><strong>The fastest way to connect two apps.</strong> It has a huge app library and a gentle learning curve, so it's ideal for simple automations.</p>
+                <p><strong>Watch out for:</strong> It gets expensive and awkward once workflows need heavy logic or high volume.</p>
+                <p><a href="#">Read my Zapier posts →</a></p>
+            </article>
+        </section>
+
+        <section class="ai-models">
+            <h2>AI Models</h2>
+
+            <article>
+                <h3>OpenAI</h3>
+                <p><strong>Reliable for structured tasks.</strong> I use it for classification, extraction, and short drafting steps inside workflows.</p>
+                <p><strong>Watch out for:</strong> It can state wrong answers confidently, so any step that talks to customers needs guardrails and testing.</p>
+            </article>
+
+            <article>
+                <h3>Claude</h3>
+                <p><strong>Strong for writing and longer context.</strong> I reach for it when a step needs careful tone, such as follow-up emails, or when it has to read long documents.</p>
+                <p><strong>Watch out for:</strong> Like any model, it needs clear instructions and testing on real inputs before it touches a customer.</p>
+            </article>
+        </section>
+
+        <section class="data-and-apps">
+            <h2>Data and Business Apps</h2>
+
+            <article>
+                <h3>Airtable and Google Sheets</h3>
+                <p>My go-to places for logs, lookups, and simple dashboards. Every workflow I build writes its runs somewhere I can review, which makes debugging far easier.</p>
+            </article>
+
+            <article>
+                <h3>Stripe, Slack, and Gmail</h3>
+                <p>The apps where the real work happens: payments come in, alerts land in Slack, and emails go out through Gmail. Most of my builds connect at least one of them.</p>
+            </article>
+        </section>
+
+        <section class="how-i-choose">
+            <h2>How I Choose a Tool</h2>
+            <ol>
+                <li><strong>Who will maintain it?</strong> If a non-technical team owns it, I favor the simpler tool.</li>
+                <li><strong>How complex is the logic?</strong> Branching and custom code point toward n8n.</li>
+                <li><strong>What does it cost at scale?</strong> I estimate volume before I commit to a platform.</li>
+                <li><strong>How does it fail?</strong> I want clear error messages and an easy way to retry.</li>
+            </ol>
+        </section>
+
+        <section class="stopped-using">
+            <h2>Tools I Stopped Using</h2>
+            <!-- Add your real examples here. This section is a strong trust signal because it shows you're not just promoting tools. -->
+            <p>[Name a tool you dropped and the honest reason why. For example: "I stopped using X because it broke silently when Y happened."]</p>
+        </section>
+
+        <section class="disclosure">
+            <h2>A Note on Recommendations</h2>
+            <!-- Update this if you ever use affiliate links. -->
+            <p>I don't take payment to feature a tool. If I ever add affiliate links, I'll label them clearly, and it won't change what I recommend.</p>
+        </section>
+
+        <section class="tools-cta">
+            <h2>Not Sure Which Tool Fits?</h2>
+            <p>Tell me what you're trying to automate and I'll point you to the simplest tool that can do it, even if that means a free one.</p>
+            <h3>Ask me </h3>
+            
+        <form class="contact-form" action="#" method="post">
+            <div class="form-field">
+                <label for="fname">First name</label>
+                <input type="text" id="fname" name="fname" placeholder="Oliver" autocomplete="given-name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="lname">Last name</label>
+                <input type="text" id="lname" name="lname" placeholder="Sain" autocomplete="family-name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+            </div>
+
+            <div class="form-field">
+                <label for="topic">What do you need help with?</label>
+                <select id="topic" name="topic">
+                    <option value="">Choose one (optional)</option>
+                    <option value="workflow">Automating a workflow</option>
+                    <option value="ai">Adding AI to a process</option>
+                    <option value="fix">Fixing a broken automation</option>
+                    <option value="other">Something else</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" maxlength="1000" placeholder="Tell me what process you want to automate and what tools you use now." required></textarea>
+            </div>
+
+            <button type="submit">Send message</button>
+        </form>
+
+        </section>
+
+   </main>
+
+    <footer class="site-footer">
+
+        <nav class="explore" aria-label="Footer">
+            <h2>Explore</h2>
+            <ul>
+                <li><a href="index.html">Latest Posts</a></li>
+                <li><a href="SeriesNGuide.html">Series &amp; Guides</a></li>
+                <li><a href="toolNStack.html">Tools &amp; Stack</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <div class="media-platforms">
+            <h2>Connect</h2>
+            <ul>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">X / Twitter</a></li>
+                <li><a href="#">YouTube</a></li>
+                <li><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></li>
+            </ul>
+        </div>
+
+        <div class="legal">
+            <h2>Legal</h2>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+            </ul>
+        </div>
+
+        <p class="copyright">© 2026 Behind the Workflow. All rights reserved.</p>
+    </footer>
+</body>
+</html>

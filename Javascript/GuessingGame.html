@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="guessingGame">
+        <h3 class="title">Guessing game</h3>
+        <div class="rotatingSection">
+            <button class="rotatingNo">0</button>
+        </div>
+        <input type="number" id="inputtextbox" min="1" max="20">
+        <label for="inputtextbox" class="instructionLabel">Enter a number from 1 to 20</label>
+        <button class="guessbtn">Guess</button>
+    </section>
+    
+</body>
+<style>
+    body{
+        height: 100vh;
+        background: linear-gradient(
+                     135deg,
+                    #FEF08A 0%,
+                    #FDE047 50%,
+                    #FDBA74 100%
+                    )no-repeat center center / cover;
+        color:#713F12;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-shadow: 0 2px 3px #713F12;
+        font-size: 2rem;
+    
+    }
+    .guessingGame{
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(135deg, #1F2937, #253347);
+        padding: 18px 28px;
+        gap: 1.3rem;
+        justify-content: center;
+        align-items: center;
+        border-radius: 18px;
+        color: #FFFFFF;
+        width: 700px;
+        box-shadow: 2px 2px 9px rgb(0 0 0 / .9);
+        border: 1px solid rgba(250, 250, 250, .6);
+    }
+    .instructionLabel{
+        font-size: 1.3rem;
+    }
+    .guessbtn{
+        background: #1F2937;
+        border: 1px solid rgba(250, 250, 250, .6);
+        padding: 12px 84px;
+        color: #FFFFFF;
+        border-radius: 999px;
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        transition: all .3s ease;
+        
+    }
+    .guessbtn:hover:not(:disabled) {
+    border: 1px solid #FEF08A;
+    color: #FEF08A;
+    }
+    .guessbtn:disabled{
+        opacity: .5;
+        cursor: not-allowed;
+         background: #6B7280;
+        color: #D1D5DB;
+        border-color: #9CA3AF;
+    }
+
+    .guessbtn:active:not(:disabled){
+        transform: scale(.97);
+        border: 1px solid #FFFFFF;
+        color: #FFFFFF;
+        font-size: 1.1rem;
+    }
+    #inputtextbox{
+        width: 50%;
+        padding: 12px 14px;
+        color: #1F2937;
+        border: 1px solid #D1D5DB;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        transition: border-color .2s ease,
+                    box-shadow .2s ease;
+    }
+    #inputtextbox::placeholder{
+        color: #9CA3AF;
+    }
+
+    #inputtextbox:focus:not(:disabled){
+        border-color: #2563EB;
+        box-shadow: 0 0 0 4px rgb(37 99 235 / 15%);
+        outline: none;
+    }
+    #inputtextbox:disabled{
+        background-color: #374151;
+        color: #9CA3AF;
+        border-color: #4B5563;
+        cursor: not-allowed;
+        opacity: 0.8;
+    }
+    .rotatingNo{
+        background: transparent;
+        border: none;
+        width: 80px;
+        height: 80px;
+        font-size: 5.4rem;
+        color: #FFFFFF;
+        pointer-events: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<script>
+   
+ 
+    
+    const rotatingNo = document.querySelector('.rotatingNo');
+    const inputtextbox = document.getElementById('inputtextbox');
+    const guessbtn = document.querySelector('.guessbtn');
+    const instructionLabel = document.querySelector('.instructionLabel');
+
+    
+    guessbtn.addEventListener('click', () => {
+        const userGuess = inputtextbox.valueAsNumber;
+
+       if(
+            inputtextbox.value === '' ||
+            !Number.isInteger(userGuess) ||
+            userGuess < 1 || userGuess > 20
+
+       ){
+
+            instructionLabel.textContent = 'Enter a whole number from 1 to 20';
+            return;
+
+       }
+       guessbtn.disabled = true;
+       inputtextbox.disabled = true;
+       instructionLabel.textContent = 'Picking a random number...';
+
+      
+
+        let computerNo;
+
+        const rotatingInterval = setInterval(() => {
+            computerNo = Math.floor(Math.random() * 20) +1;
+            rotatingNo.textContent = computerNo;
+        }, 100);
+
+
+       setTimeout(()=>{
+        clearInterval(rotatingInterval);
+
+        if (userGuess === computerNo){
+            
+            instructionLabel.textContent = 'You win!';
+        } else {
+            instructionLabel.textContent = `You lose! the correct number is ${computerNo}.`;
+
+        } 
+        guessbtn.disabled = false;
+        inputtextbox.disabled = false;
+        inputtextbox.value = '';
+
+       }, 2000);
+    });
+    
+
+    
+</script>
+</html>

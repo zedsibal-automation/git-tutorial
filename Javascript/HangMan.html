@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h1>HANGMAN</h1>
+    <section class="livesNhint">
+        <span class="lives">Lives:</span>
+        <span class="hint">Hint: An animla</span>
+    </section>
+    <section class="guessWord">
+        
+    </section>
+    <section class="keyboard">
+     
+    </section>
+    <section class="restart">
+        <button class="restartbtn">Restart</button>
+    </section>
+    </main>
+    
+</body>
+
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background: linear-gradient(135deg, #654EA3, #EAAFC8)fixed;
+    }
+    main{
+        background-color:#8B72C5;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        padding: 24px 36px;
+        line-height: 3rem;
+        border-radius: 14px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .3);
+        border: 1px solid rgba(255, 255, 255, .3);
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        color: #241B35;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+        font-size: 40px;
+    }
+    .livesNhint{
+        display: flex;
+        flex-direction: column;
+        line-height: 2rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .guessWord{
+        display: flex;
+        justify-content: center;
+        letter-spacing: .7rem;
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-top: 24px;
+        margin-bottom: 22px;
+    }
+
+    .restart button{
+        background: #654EA3;
+        color: #FFFFFF;
+        padding: 12px 54px;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+}
+
+.restart button:hover {
+    filter: brightness(1.1);
+}
+.restart{
+    display: flex;
+    justify-content: center;
+
+}
+.keyboard{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(41px, 1fr));
+    margin-bottom: 20px;
+}
+.keyboard button{
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: #241B35;
+    color: #FFFFFF;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+.keyboard button:hover{
+    background: #443364;
+}
+.guessWord { gap: 10px; }
+.guessWord .letter {
+    width: 44px;
+    min-height: 54px;
+    text-align: center;
+    border-bottom: 3px solid #241B35;
+}
+.keyboard button:disabled { opacity: .4; cursor: not-allowed; }
+.keyboard button.right { background: #22c55e; }
+.keyboard button.wrong { background: #ef4444; }
+</style>
+
+<script>
+    const words = [
+    { word: 'PANDA',    hint: 'An animal 🐼' },
+    { word: 'MANGO',    hint: 'A fruit 🥭' },
+    { word: 'PLANET',   hint: 'Found in space 🪐' },
+    { word: 'GUITAR',   hint: 'A music instrument 🎸' },
+    { word: 'PHILIPPINES', hint: 'Our country 🇵🇭' }
+    ]
+
+    let secret = '';
+    let guessed = [];
+    let lives = 6;
+    let gameOver = false;
+    let lastWord = '';
+
+    const hintEl = document.querySelector('.hint');
+    const livesEl = document.querySelector('.lives')
+    const guessWordEl = document.querySelector('.guessWord');
+    const restartbtnEl = document.querySelector('.restartbtn');
+     const keyboardEl = document.querySelector('.keyboard');
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        
+    function keyboardDisplay(){
+       
+   
+
+        keyboardEl.innerHTML = '';
+
+        alphabet.split('').forEach(element => {
+            const key = document.createElement('button');
+            key.type = 'button';
+            key.classList.add('key')
+            key.textContent = element;
+            key.addEventListener('click', () => handleGuess(element));
+            keyboardEl.appendChild(key);
+        });
+    }
+
+    keyboardDisplay();
+
+    
+
+    function handleGuess(letter) {
+    if (gameOver) return;
+    if (guessed.includes(letter)) return;
+
+    guessed.push(letter);
+
+    const key = [...keyboardEl.children].find(k => k.textContent === letter);
+    key.disabled = true;
+
+    if (secret.includes(letter)) {
+        key.classList.add('right');
+        renderWord();
+
+        const won = secret.split('').every(l => guessed.includes(l));
+        if (won) {
+            gameOver = true;
+            livesEl.textContent = 'You won! 🎉';
+        }
+    } else {
+        key.classList.add('wrong');
+        lives--;
+        livesEl.textContent = `Lives: ${lives}`;
+
+        if (lives === 0) {
+            gameOver = true;
+            livesEl.textContent = `Game over! The word was ${secret}`;
+        }
+    }
+}
+
+    function renderWord() {
+    guessWordEl.innerHTML = '';
+
+    secret.split('').forEach(letter => {
+        const box = document.createElement('div');
+        box.classList.add('letter');
+        box.textContent = guessed.includes(letter) ? letter : '';
+        guessWordEl.appendChild(box);
+    });
+}
+    function newGame(){
+        const chosen = pickWord();
+        secret = chosen.word;
+        guessed = [];
+        gameOver=false;
+        lives = 6;
+
+        hintEl.textContent = `Hint: ${chosen.hint}`;
+        livesEl.textContent = `Lives: ${lives}`;
+
+        keyboardEl.querySelectorAll('.key').forEach(k => {
+            k.disabled = false;
+            k.classList.remove('right', 'wrong');
+        });
+
+        renderWord();
+    }
+
+    function pickWord() {
+        let chosen;
+
+        do {
+            chosen = words[Math.floor(Math.random() * words.length)];
+        } while (chosen.word === lastWord && words.length > 1);
+
+        lastWord = chosen.word;
+        return chosen;
+    }
+
+    
+    newGame();
+    
+    restartbtnEl.addEventListener('click', newGame);
+
+</script>
+</html>

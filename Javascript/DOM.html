@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document object method</title>
+</head>
+<body>
+    <section class="subscribe">
+        <h2>YouTube Subscribe Button</h2>
+        <button class="subscribed">Subscribe</button>
+    </section>
+
+    <section class="game">
+        <h2>Rock Paper Scissors</h2>
+        <a href="/Javascript/rockPaperScissor.html" target="_blank" class="clickHere">Click here</a>
+    </section>
+
+    <section class="calculator">
+        <h3>Amazon Shipping Calculator</h3>
+        <h3>Orders under $40 = +$10 shipping fee</h3>
+        <h3>Orders over $40 = Free Shipping</h3>
+        <div class="cal">
+            <input type="number" id="orderTotal" class="NoToCalculate" required>
+            <button class="calculate">Calculate</button>
+        </div>
+        <label class="orderTotal" for="orderTotal" id="orderLabel">Order Total</label>
+    </section>
+    
+    <section class="version">
+        <a href="#" target="_blank" class="cssVersion">CSS version of these projects</a>
+    </section>
+
+    <style>
+        body{
+            height: 100vh;
+            background: linear-gradient(to bottom, #00cbf8 2%, #19c6ec 50%, #03a5c9 99% ) no-repeat center center / cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px ;
+        }
+        .cal{
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 6px;
+        }
+        .subscribed {
+                    background: #2b2929;
+                    color: #ffffff;
+                    padding: 8px 30px;
+                    border-radius: 8px;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    border: none;
+                    height: 100%;
+                    width: 100%;
+                
+                    }
+        .calculate{
+            flex: none;
+            padding: 0 24px;
+            border: none;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(to bottom, #12406b, #0b2540);
+            box-shadow: 0 4px 12px rgba(0, 40, 70, 0.35);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .calculate:hover{
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 40, 70, 0.45);
+        }
+        .calculate:active{
+            transform: scale(0.97);
+        }
+        .calculate,
+        #orderTotal{
+             box-sizing: border-box;
+                height: 48px;
+                font-family: inherit;
+                font-size: 1rem;
+                border-radius: 12px;
+        }
+        #orderTotal {
+            flex: 1;
+            min-width: 0;
+            padding: 0 16px;
+            background: #ffffff;
+            border: 2px solid transparent;
+            color: #0b2540;
+            box-shadow: 0 2px 8px rgba(0, 60, 90, 0.2);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            }
+
+        #orderTotal::placeholder {
+            color: #7a98ad;
+            }
+
+        #orderTotal:focus {
+            outline: none;
+            border-color: #0b2540;
+            box-shadow: 0 0 0 4px rgba(11, 37, 64, 0.2);
+            }
+        .subscribed.isSubscribed {
+                    background: #cc0000;
+                    color: #ffffff;
+                    }
+        
+        .clickHere:visited {
+                    color: #57139b;      /* after the link has been visited */
+                    }
+
+        .clickHere {
+                    color: #0066cc;
+                    }
+
+        .clickHere:hover {
+                    color: #ff6600;      /* while the mouse is over it */
+                    }
+
+        .clickHere:active {
+                    color: #cc0000;      /* only while the mouse button is held down */
+                    }
+        #orderLabel{
+                margin-top: 8px;
+                color: #9b1c1c;
+                font-weight: 600;
+        }
+
+        
+    </style>
+
+    <script>
+        const subscribe = document.querySelector('.subscribed');
+        
+        subscribe.addEventListener('click', () => {
+                    if (subscribe.textContent === 'Subscribe'){
+                        subscribe.textContent = 'Unsubscribe'; 
+                        subscribe.classList.add('isSubscribed'); 
+                        console.log(subscribe);
+                    } else {
+                        subscribe.textContent =  'Subscribe' ; 
+                        subscribe.classList.remove('isSubscribed');
+                        console.log(subscribe);
+                    }
+            });
+
+        const clickLinkRPS = document.querySelector('.clickHere');
+
+        clickLinkRPS.addEventListener('click', () => {
+            clickLinkRPS.style.color = 'red';
+        });
+
+
+        const calculateFee = document.querySelector('.calculate');
+        const input = document.querySelector('.NoToCalculate');
+        const totalPrice = document.getElementById("orderLabel");
+
+        calculateFee.addEventListener('click', () => {
+            const value = input.value;
+
+            if (value.trim() === '' || !Number.isFinite(Number(value)) || Number(value) < 0) {
+                        totalPrice.textContent = 'Please enter a valid order amount';
+                        return;
+                    }
+                const amount = Number(value);
+                const total = amount < 40 ? amount + 10 : amount;
+
+                totalPrice.textContent = `${total.toFixed(2)} is the total price`;
+
+        });
+    </script>
+</body>
+</html>

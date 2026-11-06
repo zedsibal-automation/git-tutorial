@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Oliver Sain, a beginner web developer who builds clean, simple websites.">
+  <title>Oliver Sain | Web Developer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <img src="img/mylogo.png" alt="Oliver Sain log" width="220px" height="44px">
+    </div>
+
+    <nav class="main" aria-label="Main">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <h1>Hi, I'm <span class="my-name">Oliver Sain</span></h1>
+      <p class="hero-subtitle">I design and build clean, simple websites.</p>
+      <p class="hero-tagline">Turning ideas into pages people enjoy using.</p>
+      <a href="#projects" class="btn">See My Work</a>
+    </section>
+
+    <section class="about" id="about">
+      
+       <div class="about-photo">
+        <img src="img/profile.png" alt="Portrait of Oliver Sain" width="300" height="400">
+      </div>
+
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          I'm a beginner web developer from the Philippines who loves turning blank screens into something real. I started learning HTML and CSS because I enjoy making things I can see and share, and I haven't stopped since.
+        </p>
+        <p>
+          When I'm not coding, you'll find me watching movies. I'm always learning, and my goal is to build websites that look good, load fast, and work on every device.
+        </p>
+        <p class="learning">
+          Currently learning: HTML, CSS, and JavaScript
+        </p>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+      <h2>My Projects</h2>
+      <p class="section-intro">A few things I've built while learning.</p>
+
+      <div class="projects-grid">
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/autoflowaiautomationlandingpage.webp" alt="AutoFlow landing page promoting an AI automation service" width="300" height="200" loading="lazy">
+          </div>
+          <h3>AutoFlow AI Automation</h3>
+          <p>A responsive landing page for an AI automation service, built to practice layout and hero sections.</p>
+          <a href="#" class="card-link">View Project</a>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/bloomauraelegantfloralecommercehero.webp" alt="BloomAura floral e-commerce homepage with an elegant hero section" width="300" height="200" loading="lazy">
+          </div>
+          <h3>BloomAura Floral Shop</h3>
+          <p>An elegant e-commerce homepage for a flower shop with a clean, typography-focused hero.</p>
+          <a href="#" class="card-link">View Project</a>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/neonaiautomationdashboard.webp" alt="Neon-styled AI automation dashboard website" width="300" height="200" loading="lazy">
+          </div>
+          <h3>Neon AI Dashboard</h3>
+          <p>A neon-themed AI automation dashboard page practicing bold colors and card layouts.</p>
+          <a href="#" class="card-link">View Project</a>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/shoplydarkmarketshowcase.webp" alt="Shoply dark-themed e-commerce homepage with a product showcase" width="300" height="200" loading="lazy">
+          </div>
+          <h3>Shoply E-Commerce</h3>
+          <p>A dark-themed online store with a product showcase and a mobile-friendly layout.</p>
+          <a href="#" class="card-link">View Project</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <h2>Let's Work Together</h2>
+      <p class="section-intro">
+        Have a project in mind or just want to say hi? Send me a message and I'll get back to you soon.
+      </p>
+
+      <form action="/submit" method="post" class="myform">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Your name" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="you@example.com" required>
+
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Oliver Sain. All rights reserved.</p>
+    <p>Built with HTML &amp; CSS</p>
+
+    <nav aria-label="Social">
+      <ul>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+</body>
+</html>

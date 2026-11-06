@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    
+    setTimeout((firstname) => {
+        console.log(`My name is ${firstname}`);
+    }, 4000, "euseff");
+
+    setInterval((firstname) => {
+        console.log(`My name is ${firstname}`);
+    }, 1000,"euseff");
+
+    setInterval((start, end) => {
+        for (let i = start ; i < (end + 1); i++){
+            console.log(i);
+    }
+    }, 1000, 1 , 10);
+    
+    function timer(start, end){
+      let count =  setInterval(() => {
+        console.log(start);
+            if (start >= end){
+                clearInterval(count);
+            } else {
+                start++;
+            }
+
+        }, 1000);
+    }
+   timer(0,10);
+
+const countDown = (num) => {
+
+    console.log(num);    
+    
+    const updatedNum = num + 1;
+
+    if (updatedNum <= 10){
+        countDown(updatedNum);
+    }
+        
+    
+}
+countDown(1);
+
+</script>
+</html>

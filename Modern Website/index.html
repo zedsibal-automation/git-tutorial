@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover cherry blossom varieties, the meaning of hanami, famous viewing places and the bloom calendar.">
+    <title>Sakura Days | Cherry Blossom Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+</head>
+<body id="home">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <a class="logo" href="#home">Sakura Days <label for="menu"></label></a>
+
+            <input type="checkbox" name="" id="menu">
+
+        <nav class="site-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#meaning">Meaning</a></li>
+                <li><a href="#varieties">Varieties</a></li>
+                <li><a href="#places">Places</a></li>
+                <li class="bloom-cal"><a href="#calendar">Bloom Calendar</a></li>
+                <li><a href="#join">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main">
+
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-text">
+                <h1 id="hero-title">Spring, in full bloom</h1>
+                <p>Discover the stories, places and seasons behind the world’s most loved flower.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#varieties">Explore varieties</a>
+                    <a class="btn btn-secondary" >When to visit</a>
+                </div>
+            </div>
+            <figure class="hero-media">
+                <img src="img/somei-yoshino-tree.webp" width="1200" height="800"
+                     alt="Large cherry tree in full bloom in a park under a blue sky">
+                <figcaption class="hero-badge">Peak bloom: late March</figcaption>
+            </figure>
+        </section>
+
+        <!-- MEANING + STATS -->
+        <section class="meaning" id="meaning" aria-labelledby="meaning-title">
+            <div class="meaning-text">
+                <h2 id="meaning-title">A flower that teaches us to pause</h2>
+                <p>In Japan, cherry blossoms symbolize the beauty of fleeting moments. The flowers bloom for only about one to two weeks, which is why people gather every spring to enjoy them. This custom is called <em>hanami</em>, meaning “flower viewing.” The idea behind it, <em>mono no aware</em>, is a gentle sadness that makes beauty feel more precious.</p>
+            </div>
+            <ul class="stats">
+                <li class="stat">
+                    <strong class="stat-value">1–2 weeks</strong>
+                    <span class="stat-label">Typical full-bloom period</span>
+                </li>
+                <li class="stat">
+                    <strong class="stat-value">5 petals</strong>
+                    <span class="stat-label">On most wild cherry blossoms</span>
+                </li>
+                <li class="stat">
+                    <strong class="stat-value">1912</strong>
+                    <span class="stat-label">Year Japan gifted trees to Washington, D.C.</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- VARIETIES -->
+        <section class="varieties" id="varieties" aria-labelledby="varieties-title">
+            <h2 id="varieties-title">Varieties</h2>
+
+            <!-- Featured (bento grid) -->
+            <div class="featured">
+                <article class="feature feature-main">
+                    <img src="img/somei-yoshino-tree.webp" width="1200" height="800" loading="lazy"
+                         alt="Somei Yoshino tree covered in pale blossom">
+                    <div class="feature-body">
+                        <h3>Somei Yoshino</h3>
+                        <p>The most common type. Pale pink-white blossoms that cover bare branches before the leaves appear.</p>
+                    </div>
+                </article>
+                <article class="feature">
+                    <img src="img/weeping-cherry.webp" width="1050" height="700" loading="lazy"
+                         alt="Huge weeping cherry tree with pink blossoms">
+                    <div class="feature-body">
+                        <h3>Shidarezakura</h3>
+                        <p>The weeping cherry. Branches drape downward like a pink waterfall.</p>
+                    </div>
+                </article>
+                <article class="feature">
+                    <img src="img/kanzan-02.webp" width="800" height="800" loading="lazy"
+                         alt="Large cluster of pink double cherry blossoms">
+                    <div class="feature-body">
+                        <h3>Yaezakura</h3>
+                        <p>Fluffy, double-petaled blooms that open later in the season.</p>
+                    </div>
+                </article>
+                <article class="feature feature-wide">
+                    <img src="img/kawazu-zakura-02.webp" width="900" height="900" loading="lazy"
+                         alt="Bright pink blossoms and buds against a blue sky">
+                    <div class="feature-body">
+                        <h3>Kawazu-zakura</h3>
+                        <p>An early bloomer with deeper pink petals, flowering as early as February.</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Browse all (horizontal scroller) -->
+            <h3 class="browse-title" id="browse-title">Browse all varieties</h3>
+            <div class="scroller" role="region" aria-labelledby="browse-title" tabindex="0">
+                <figure class="card">
+                    <img src="img/kawazu-zakura-01.webp" width="400" height="500"
+                         alt="Pink cherry blossoms and buds on a branch">
+                    <figcaption><h4>Kawazu-zakura</h4><p>Deep pink blooms that open as early as February</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/shirotae-01.webp" width="400" height="500"
+                         alt="White double cherry blossoms with green leaves">
+                    <figcaption><h4>Shirotae</h4><p>Snow-white double flowers with fresh green leaves</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/somei-yoshino-tree.webp" width="400" height="500"
+                         alt="Large cherry tree in full bloom in a park">
+                    <figcaption><h4>Somei Yoshino</h4><p>The classic hanami tree, covered in white blossom</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/ukon-closeup.webp" width="400" height="500" loading="lazy"
+                         alt="Close-up of pale green double blossoms">
+                    <figcaption><h4>Ukon, close-up</h4><p>Rare cream-green petals with a hint of pink</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/kanzan-01.webp" width="400" height="500" loading="lazy"
+                         alt="Pink double blossom cluster with copper leaves">
+                    <figcaption><h4>Kanzan</h4><p>Pom-pom clusters with bronze young leaves</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/white-blush-double.webp" width="400" height="500" loading="lazy"
+                         alt="White and blush double flower with a green leaf">
+                    <figcaption><h4>Ichiyo</h4><p>Soft white-to-blush layered petals</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/yoshino-white-sky.webp" width="400" height="500" loading="lazy"
+                         alt="White cherry blossoms against a blue sky">
+                    <figcaption><h4>Yoshino cherry</h4><p>Single white blossoms against a spring sky</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/gyoiko.webp" width="400" height="500" loading="lazy"
+                         alt="Green cherry blossoms with pink centers">
+                    <figcaption><h4>Gyoiko</h4><p>Green flowers with raspberry-pink stripes</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/kanzan-pink-white.webp" width="400" height="500" loading="lazy"
+                         alt="Ruffled pink and white blossom clusters">
+                    <figcaption><h4>Kanzan, ruffled form</h4><p>Ruffled pink petals fading to white centers</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/ukon.webp" width="400" height="500" loading="lazy"
+                         alt="Pale yellow-green cherry blossoms on a branch">
+                    <figcaption><h4>Ukon</h4><p>Pale yellow-green petals, famously unusual</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/tai-haku.webp" width="400" height="500" loading="lazy"
+                         alt="White blossoms and bronze leaves under a blue sky">
+                    <figcaption><h4>Tai Haku</h4><p>The “great white cherry” with huge flowers</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/kanzan-02.webp" width="400" height="500" loading="lazy"
+                         alt="Large cluster of pink double cherry blossoms">
+                    <figcaption><h4>Kanzan, full bloom</h4><p>Heavy double blooms in full spring color</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/kawazu-zakura-02.webp" width="400" height="500" loading="lazy"
+                         alt="Bright pink blossoms and buds against a blue sky">
+                    <figcaption><h4>Kawazu-zakura</h4><p>Vivid pink against a clear February sky</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/jugatsu-zakura.webp" width="400" height="500" loading="lazy"
+                         alt="Small pale blossoms on bare branches">
+                    <figcaption><h4>Jugatsu-zakura</h4><p>Blooms in autumn and again in spring</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/taiwan-cherry.webp" width="400" height="500" loading="lazy"
+                         alt="Drooping deep pink bell-shaped blossoms">
+                    <figcaption><h4>Taiwan cherry</h4><p>Bell-shaped flowers in deep rosy red</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/weeping-cherry.webp" width="400" height="500" loading="lazy"
+                         alt="Huge weeping cherry tree over a field of yellow flowers">
+                    <figcaption><h4>Shidarezakura</h4><p>A weeping giant over a field of yellow rapeseed</p></figcaption>
+                </figure>
+                <figure class="card">
+                    <img src="img/somei-yoshino-closeup.webp" width="400" height="500" loading="lazy"
+                         alt="Close-up of pale pink-white cherry blossoms with golden stamens">
+                    <figcaption><h4>Somei Yoshino, close-up</h4><p>Pale blush petals with golden stamens</p></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- PLACES -->
+        <section class="places" id="places" aria-labelledby="places-title">
+            <h2 id="places-title">Places to see them</h2>
+            <ul class="places-grid">
+                <li class="place">
+                    <h3>Philosopher’s Path, Kyoto</h3>
+                    <p>A canal-side walk lined with trees.</p>
+                </li>
+                <li class="place">
+                    <h3>Mount Yoshino, Nara</h3>
+                    <p>A mountain covered in tens of thousands of trees, blooming in waves from bottom to top.</p>
+                </li>
+                <li class="place">
+                    <h3>Hirosaki Castle, Aomori</h3>
+                    <p>Famous for blossoms framing the castle moat.</p>
+                </li>
+                <li class="place">
+                    <h3>Tidal Basin, Washington, D.C.</h3>
+                    <p>Home of the National Cherry Blossom Festival.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- BLOOM CALENDAR -->
+        <section class="calendar" id="calendar" aria-labelledby="calendar-title">
+            <h2 id="calendar-title">Bloom calendar</h2>
+            <ol class="timeline">
+                <li class="step">
+                    <h3>Budding</h3>
+                    <p>Small buds swell on bare branches.</p>
+                </li>
+                <li class="step">
+                    <h3>First bloom</h3>
+                    <p>The first few flowers open.</p>
+                </li>
+                <li class="step">
+                    <h3>Full bloom (mankai)</h3>
+                    <p>The peak, with branches covered in flowers.</p>
+                </li>
+                <li class="step">
+                    <h3>Hanafubuki</h3>
+                    <p>Petals fall like a pink snowstorm.</p>
+                </li>
+            </ol>
+            <p class="note">Timing varies by location. In Japan, blooms start in the warm south and move north over several weeks, so always check a current forecast before traveling.</p>
+        </section>
+
+        <!-- HANAMI TIPS -->
+        <section class="tips" aria-labelledby="tips-title">
+            <div class="tips-text">
+                <h2 id="tips-title">Hanami tips</h2>
+                <ul class="checklist">
+                    <li>Arrive early to claim a good spot</li>
+                    <li>Bring a picnic blanket and snacks</li>
+                    <li>Visit on a weekday to avoid crowds</li>
+                    <li>Take photos in soft morning light</li>
+                    <li>Leave no trash behind</li>
+                </ul>
+            </div>
+            <img class="tips-photo" src="img/yoshino-white-sky.webp" width="800" height="940" loading="lazy"
+                 alt="White cherry blossoms against a blue sky">
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="join" id="join" aria-labelledby="join-title">
+            <div class="join-text">
+                <h2 id="join-title">Never miss the bloom</h2>
+                <p>Get seasonal bloom updates and travel tips in your inbox.</p>
+            </div>
+            <form class="join-form" action="#" method="post">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" autocomplete="name" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+                <div class="field field-full">
+                    <label for="variety">Favorite variety</label>
+                    <select id="variety" name="variety">
+                        <option value="">Choose one</option>
+                        <option>Somei Yoshino</option>
+                        <option>Shidarezakura</option>
+                        <option>Kanzan</option>
+                        <option>Kawazu-zakura</option>
+                        <option>Tai Haku</option>
+                        <option>Ukon</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary field-full" type="submit">Notify me</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Sakura Days</p>
+        <nav aria-label="Footer navigation">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#varieties">Varieties</a></li>
+                <li><a href="#places">Places</a></li>
+                <li><a href="#join">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+</html>
